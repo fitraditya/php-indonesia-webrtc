@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>PHP-WebRTC :: Media Stream</title>
+  <link rel="stylesheet" href="assets/css/bootstrap.css">
+  <link rel="stylesheet" href="assets/css/bootstrap-theme.css">
+  <style>
+    body {
+      padding-top: 50px;
+    }
+    #local-video {
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Media Stream</a>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <h3>Media Stream Demo</h3>
+    <div class="row">
+      <div class="col-xs-12">
+        <video id="local-video" autoplay muted></video>
+      </div>
+    </div>
+  </div>
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/bootstrap.js"></script>
+  <script>
+    $(function() {
+      var localVideo = document.querySelector('#local-video');
+
+      navigator.mediaDevices.getUserMedia({ video: true })
+      .then(function(stream) {
+        localStream = stream;
+        localVideo.srcObject = localStream;
+      })
+      .catch(function(error) {
+        alert('Error: ', error);
+      });
+    })
+  </script>
+</body>
+
+</html>
